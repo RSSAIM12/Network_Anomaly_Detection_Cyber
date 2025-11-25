@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDS Dashboard - Temps Réel</title>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ChartJS pour le graphique -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>🚀 Système de Détection d'Intrusion - Tableau de Bord Temps Réel</h1>
+
+<!-- CARD Paquets/sec -->
+<div class="card">
+    <p>Paquets traités par seconde :</p>
+    <div id="packets" class="value">0</div>
+</div>
+
+<!-- CARD Attaques détectées -->
+<div class="card">
+    <p>Nombre d'attaques détectées :</p>
+    <div id="attacks" class="value">0</div>
+</div>
+
+<!-- CARD Dernier événement -->
+<div class="card">
+    <p>Dernier événement :</p>
+    <div id="last_event" class="value">---</div>
+</div>
+
+<!-- Graphique -->
+<div class="card">
+    <canvas id="trafficChart"></canvas>
+</div>
+
+<!-- Script JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

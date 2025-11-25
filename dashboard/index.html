@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>LUCID Dashboard</title>
+
+    <style>
+        body {
+            background: #0d1117;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #58a6ff;
+        }
+        #alerts {
+            margin-top: 30px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #alerts th, #alerts td {
+            padding: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+        tr.attack {
+            background: #8b0000;
+        }
+    </style>
+</head>
+
+<body>
+<h1>🔍 LUCID Intrusion Detection — Dashboard</h1>
+
+<table id="alerts">
+    <tr>
+        <th>Time</th>
+        <th>Size</th>
+        <th>TTL</th>
+        <th>Protocol</th>
+        <th>Type</th>
+    </tr>
+</table>
+
+<script>
+    console.log("📡 Connecting to WebSocket...");
+
+    let ws = new WebSocket("ws://localhost:8765");
+
+    ws.onopen = function() {
+        console.log("🟢 WebSocket connecté !");
+    };
+
+    ws.onmessage = function(event) {
+        console.log("📨 Message reçu :", event.data);
+        let alert = JSON.parse(event.data);
+        addAlert(alert);
+    };
+
+    ws.onclose = function() {
+        console.log("🔴 WebSocket fermé !");
+    };
+
+    function addAlert(alert) {
+        let table = document.getElementById("alerts");
+
+        let row = document.createElement("tr");
+        row.classList.add("attack");
+
+        row.innerHTML = `
+            <td>${alert.time}</td>
+            <td>${alert.size}</td>
+            <td>${alert.ttl}</td>
+            <td>${alert.proto}</td>
+            <td>${alert.type}</td>
+        `;
+
+        table.appendChild(row);
+    }
+</script>
+
+</body>
+</html>
