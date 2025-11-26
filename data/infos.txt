@@ -1,0 +1,35 @@
+Lire le Dataset :
+
+Fonction : pd.read_csv('../data/dataset.csv')
+
+Explication : Cette fonction lit le fichier dataset.csv (qui est le UNSW-NB15) et le place dans un tableau (DataFrame) que vous avez appelé df.
+
+Nettoyer le Tableau (Cleaning) :
+
+Fonction : df.drop(columns=['id'])
+
+Explication : Vous avez supprimé la colonne id, car elle n'a aucune utilité pour le modèle d'Intelligence Artificielle (IA).
+
+Fonction : df.drop_duplicates()
+
+Explication : Vous avez supprimé toutes les lignes qui étaient en double (répétées) pour ne pas fausser les calculs.
+
+Fonction : df['service'].replace('-', 'unknown')
+
+Explication : Dans la colonne service, il y avait un symbole -. Vous l'avez remplacé par le mot unknown (inconnu) pour que le code puisse le comprendre.
+
+Transformer les Données (Transformation) :
+
+Fonction : LabelEncoder()
+
+Explication : C'est l'étape la plus importante. Le code ne comprend pas les mots comme tcp, udp ou http. Cette fonction a converti ces mots en chiffres (par exemple : tcp est devenu 111, udp est devenu 117, INT est devenu 4).
+
+Fonction : MinMaxScaler()
+
+Explication : Les chiffres dans le dataset étaient mélangés (certains très grands, d'autres très petits). Cette fonction a pris tous ces chiffres et les a tous placés sur une échelle comprise entre 0 et 1. Cela rend l'entraînement (training) du modèle plus facile et plus précis.
+
+Enregistrer le Résultat (Saving) :
+
+Fonction : df.to_csv('../data/clean_data.csv')
+
+Explication : Quand vous avez fini le nettoyage et la transformation, vous avez enregistré ce tableau propre dans un nouveau fichier appelé clean_data.csv.
